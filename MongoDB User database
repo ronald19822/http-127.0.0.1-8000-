@@ -1,0 +1,52 @@
+Once you're connected to your MongoDB Atlas cluster from the terminal, 
+you can run the following MongoDB commands to interact with your users collection.
+
+
+Insert a New User: This command will insert a new user with a title and 
+status into the users collection:bashCopy codedb.users.insertOne({
+    title: "John Doe",
+    status: "active"
+ })
+ 
+
+
+View All Users: Use the find() command to retrieve and display all the users in 
+the users collection:bashCopy codedb.users.find()
+
+
+Update a User's Status: To update a specific user’s status based on their _id, you can use the updateOne()method. First, find the user’s _id by listing users (as shown above) and then run: bash Copy code   db.users.updateOne(
+
+  { _id: ObjectId("USER_ID") },
+     { $set: { status: "inactive" } }
+ )
+
+Delete a User:
+
+ To delete a user based on their _id, you can use the deleteOne() 
+ method:bashCopy codedb.users.deleteOne({ _id: ObjectId("USER_ID") })
+
+
+ Find a Specific User: To search for a specific user by their title or another field, you can use the find() method with a filter: bash Copy code   db.users.find({ title: "John Doe" })
+ 
+Example Workflow
+ Insert a new user:bashCopy codedb.users.insertOne({ title: "Jane Doe", status: "active" })
+ 
+ View all users:bashCopy codedb.users.find()
+
+ Update a user's status: bashCopy codedb.users.updateOne(
+     { title: "Jane Doe" },
+     { $set: { status: "inactive" } }
+ )
+ 
+ Delete a user:bashCopy codedb.users.deleteOne({ title: "Jane Doe" })
+
+ Exit MongoDB Shell
+When you're done interacting with MongoDB via the terminal, you can simply exit the mongosh by typing:
+bash
+Copy code
+exit
+Summary of Commands:
+* Insert a user: db.users.insertOne({ title: "Name", status: "status" })
+* Find users: db.users.find()
+* Update a user: db.users.updateOne({ filter }, { $set: { field: value } })
+* Delete a user: db.users.deleteOne({ filter })
